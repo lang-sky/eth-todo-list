@@ -1,6 +1,6 @@
 // eslint-disable-next-line no-undef
-var Todos = artifacts.require("TodoList");
+var TodoList = artifacts.require("TodoList");
 module.exports = function (deployer) {
   // deployment steps
-  deployer.deploy(Todos);
+  deployer.deploy(TodoList);
 };
