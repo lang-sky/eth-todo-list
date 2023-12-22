@@ -25,6 +25,9 @@ function App() {
     console.log("todoList", todoList);
     setTodoList(todoList);
 
+    const balance = await web3.eth.getBalance(accounts[0]);
+    console.log("balance", balance);
+
     const taskCount = await todoList.methods.taskCount().call();
     console.log("taskCount", taskCount);
     setTaskCount(taskCount);
@@ -38,8 +41,14 @@ function App() {
     setLoading(true);
     todoList.methods
       .createTask(content)
-      .send({ from: account })
+      .send({ from: account, gas: 672197, gasPrice: "30000000000" })
       .once("receipt", (receipt) => {
+        console.log("create receipt", receipt);
+      })
+      .catch((err) => {
+        console.error(err);
+      })
+      .finally(() => {
         setLoading(false);
       });
   }
@@ -50,7 +59,7 @@ function App() {
       .toggleCompleted(taskId)
       .send({ from: account })
       .once("receipt", (receipt) => {
-        this.setState({ loading: false });
+        setLoading(false);
       });
   }
 
