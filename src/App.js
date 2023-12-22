@@ -29,12 +29,16 @@ function App() {
     console.log("balance", balance);
 
     const taskCount = await todoList.methods.taskCount().call();
-    console.log("taskCount", taskCount);
+    console.log(`taskCount:_${taskCount}_`);
     setTaskCount(taskCount);
+
+    const tasks = [];
     for (let i = 1; i <= taskCount; i++) {
       const task = await todoList.methods.tasks(i).call();
-      setTasks((prev) => [...prev, task]);
+      tasks.push(task);
     }
+    console.log("tasks", tasks);
+    setTasks(tasks);
   }
 
   function createTask(content) {
@@ -44,6 +48,7 @@ function App() {
       .send({ from: account, gas: 672197, gasPrice: "30000000000" })
       .once("receipt", (receipt) => {
         console.log("create receipt", receipt);
+        loadBlockchainData();
       })
       .catch((err) => {
         console.error(err);
@@ -54,13 +59,17 @@ function App() {
   }
 
   function toggleCompleted(taskId) {
+    console.log("taskId", taskId);
     setLoading(true);
     todoList.methods
       .toggleCompleted(taskId)
       .send({ from: account })
       .once("receipt", (receipt) => {
-        setLoading(false);
-      });
+        console.log("receipt", receipt);
+        loadBlockchainData();
+      })
+      .catch((err) => console.error(err))
+      .finally(() => setLoading(false));
   }
 
   return (

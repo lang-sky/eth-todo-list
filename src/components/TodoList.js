@@ -23,18 +23,15 @@ class TodoList extends Component {
         <ul id="taskList" className="list-unstyled">
           {this.props.tasks.map((task, key) => {
             return (
-              <div className="taskTemplate checkbox" key={key}>
+              <div className="taskTemplate checkbox" key={task.id}>
                 <label>
-                  <input type="checkbox" />
                   <input
                     type="checkbox"
                     name={task.id}
-                    defaultChecked={task.completed}
-                    ref={(input) => {
-                      this.checkbox = input;
-                    }}
+                    checked={task.completed}
                     onClick={(event) => {
-                      this.props.toggleCompleted(this.checkbox.name);
+                      event.preventDefault();
+                      this.props.toggleCompleted(task.id);
                     }}
                   />
                   <span className="content">{task.content}</span>
