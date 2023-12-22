@@ -1,4 +1,7 @@
-export const TODO_LIST_ADDRESS = "0x33dF1DeA7AC32830F9dE5BC181A89573D625B6b6";
+// import BuildTodoList from "../build/contracts/TodoList.json";
+// export const TODO_LIST_ADDRESS = BuildTodoList.networks["5777"].address;
+
+export const TODO_LIST_ADDRESS = "0xB3B133b7210F25C965A38eF93B9Fdd3d7fE25442";
 
 export const TODO_LIST_ABI = [
   {

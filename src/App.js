@@ -45,7 +45,7 @@ function App() {
     setLoading(true);
     todoList.methods
       .createTask(content)
-      .send({ from: account, gas: 672197, gasPrice: "30000000000" })
+      .send({ from: account, gas: 6721976200, gasPrice: "30000000000" })
       .once("receipt", (receipt) => {
         console.log("create receipt", receipt);
         loadBlockchainData();
