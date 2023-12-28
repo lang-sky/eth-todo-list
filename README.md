@@ -1,3 +1,7 @@
+## Reference
+
+https://www.dappuniversity.com/articles/ethereum-dapp-react-tutorial
+
 ## Steps to run
 
 ```bash
@@ -20,7 +24,3 @@ app.taskCount()
 app.tasks(1)
 .exit
 ```
-
-## Reference
-
-https://www.dappuniversity.com/articles/ethereum-dapp-react-tutorial
